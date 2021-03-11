@@ -7,10 +7,10 @@ import participant_eye_contact
 from utils import data_loader
 
 
-def predict(data_path, sample_file):
+def predict(dataset_path, sample_file):
     try:
         # Get absolute sample file
-        sample_file_abs = os.path.join(data_path, sample_file)
+        sample_file_abs = os.path.join(dataset_path, 'sample_lists', sample_file)
 
         # Load sample list
         df_samples = pd.read_csv(sample_file_abs, index_col='index')
@@ -19,11 +19,11 @@ def predict(data_path, sample_file):
 
         # Iterate over samples
         for index, row in df_samples.iterrows():
-            recording_path = os.path.join(data_path, row['recording'])
+            recording_path = os.path.join(dataset_path, 'data', row['recording'])
 
-            video1, video2, video3, video4, audio = data_loader.get_data_generators(recording_path, row['start_time'], row['end_time'])
+            video_generators, audio_generators = data_loader.get_data_generators(recording_path, row['start_time'], row['end_time'])
 
-            predictions.append([index] + participant_eye_contact.predict(video1, video2, video3, video4, audio, row['subject']))
+            predictions.append([index] + participant_eye_contact.predict(video_generators, audio_generators, row['subject']))
 
         # Write predictions
         df_out = pd.DataFrame(predictions, columns=['index', 'prediction'])

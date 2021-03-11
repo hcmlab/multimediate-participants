@@ -6,20 +6,9 @@ import numpy as np
 from pydub import AudioSegment
 
 
-def parse_time(start, end):
-    start_time = datetime.strptime(start, '%M:%S')
-    end_time = datetime.strptime(end, '%M:%S')
+def get_audio_generator(recording_path, subject, start_time, end_time):
+    audio_file = os.path.join(recording_path, "{}.audio.wav".format(subject))
 
-    t1 = start_time.minute * 60 + start_time.second
-    t2 = end_time.minute * 60 + end_time.second
-
-    return t1, t2
-
-
-def get_audio_generator(recording_path, start_time, end_time):
-    audio_file = os.path.join(recording_path, "subjectPos.audio.wav")
-
-    #t1, t2 = parse_time(start_time, end_time)
     fps = 30
     sr = 44100
     additional_time = 1 / fps + 1 / sr
@@ -42,8 +31,6 @@ def get_audio_generator(recording_path, start_time, end_time):
 def get_video_generator(recording_path, subject, start_time, end_time):
     video_file = os.path.join(recording_path, "{}.video.avi".format(subject))
 
-    #t1, t2 = parse_time(start_time, end_time)
-
     capture = cv2.VideoCapture(video_file)
 
     frame_width = int(capture.get(cv2.CAP_PROP_FRAME_WIDTH))
@@ -62,7 +49,10 @@ def get_video_generator(recording_path, subject, start_time, end_time):
     fc = 0
     ret = True
     while fc < frame_count and ret:
-        ret, buf[fc] = capture.read()
+        ret, frame_bgr = capture.read()
+
+        buf[fc] = cv2.cvtColor(frame_bgr, cv2.COLOR_BGR2RGB)
+
         yield buf[fc]
         fc += 1
 
@@ -70,11 +60,11 @@ def get_video_generator(recording_path, subject, start_time, end_time):
 
 
 def get_data_generators(recording_path, start_time, end_time):
-    video1 = get_video_generator(recording_path, 1, start_time, end_time)
-    video2 = get_video_generator(recording_path, 2, start_time, end_time)
-    video3 = get_video_generator(recording_path, 3, start_time, end_time)
-    video4 = get_video_generator(recording_path, 4, start_time, end_time)
+    video_generators = []
+    audio_generators = []
 
-    audio = get_audio_generator(recording_path, start_time, end_time)
+    for i in range(1, 5):
+        video_generators.append(get_video_generator(recording_path, "subjectPos{}".format(i), start_time, end_time))
+        audio_generators.append(get_audio_generator(recording_path, "subjectPos{}".format(i), start_time, end_time))
 
-    return video1, video2, video3, video4, audio
+    return video_generators, audio_generators

@@ -26,7 +26,7 @@ def run_docker(task_name, image_name, data_path, sample_file):
     docker_image_name = '{}_{}'.format(image_name, task_name)
     print('Building image: {}'.format(docker_image_name))
 
-    # Build docker image (sudo docker build -f NextSpeaker.Dockerfile -t multimediate-next-speaker .)
+    # Build docker image (sudo docker build -f NextSpeaker.Dockerfile -t multimediate_next_speaker .)
     client.images.build(path='.', dockerfile=docker_file, tag=docker_image_name)
 
     # Configure mounted container volumes
@@ -36,7 +36,7 @@ def run_docker(task_name, image_name, data_path, sample_file):
 
     env = ['MULTIMEDIATE_SAMPLE_FILE={}'.format(sample_file)]
 
-    # Run docker container (sudo docker run -it --rm -e MULTIMEDIATE_SAMPLE_FILE=validation-next-speaker.csv -v $PWD/input:/input -v $PWD/output:/code/output multimediate-next-speaker)
+    # Run docker container (sudo docker run -it --rm -e MULTIMEDIATE_SAMPLE_FILE=val_next_speaker.csv -v $PWD/input:/input -v $PWD/output:/code/output multimediate_next_speaker)
     container_log = client.containers.run(docker_image_name, volumes=volumes, environment=env, remove=True, stdin_open=True, tty=True, network_disabled=True)
 
     # Print docker container output
@@ -74,7 +74,7 @@ if __name__ == '__main__':
         predict(args.path, sample_file_name)
 
     # Get labels and predictions
-    sample_file_abs = os.path.join(args.path, sample_file_name)
+    sample_file_abs = os.path.join(args.path, 'sample_lists', sample_file_name)
     prediction_file = os.path.join('output', 'prediction_{}.csv'.format(args.task))
 
     df_labels = pd.read_csv(sample_file_abs, index_col='index')
