@@ -116,7 +116,8 @@ The following steps should be performed to participate in the challenge:
    Eye contact accuracy: 0.17763157894736842
    ```
 
-1. Add the `-d` flag to see if the code also works inside a docker image:
+1. Add the `-d` flag to see if the code also works inside a docker image.
+   This step requires that docker is already installed (see instructions on [installing docker](https://docs.docker.com/get-docker/)).
 
    ```bash
    # Eye contact task
