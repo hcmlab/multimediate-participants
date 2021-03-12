@@ -30,7 +30,6 @@ The starter code repository is intended for Python-based approaches and consists
 ├── requirements-eye-contact.txt               # Add required python packages for eye contact task here (used in docker image)
 ├── requirements-next-speaker.txt              # Add required python packages for next speaker task here (used in docker image)
 ├── run.py                                     # Helper script to run evaluation locally or in docker container
-
 ```
 
 From these files the following are the most important ones:
@@ -81,7 +80,7 @@ The following steps should be performed to participate in the challenge:
    git clone https://github.com/hcmlab/multimediate-participants.git
    ```
 
-1. Download dataset from [here](TODO CHANGE).
+1. Download dataset from [here](https://TODO).
 
 1. Implement prediction code for the respective tasks in the following files:
    
@@ -89,13 +88,13 @@ The following steps should be performed to participate in the challenge:
    
    * Next speaker task: `submission/participant_next_speaker.py`
 
-1. _(Optional)_ Add required python packages for the respective tasks to the following files:
+1. _(Optional)_ Add required Python packages for the respective tasks to the following files:
 
    * Eye contact task: `requirements-eye-contact.txt`
    
    * Next speaker task: `requirements-next-speaker.txt`
 
-1. _(Optional)_ Modify dockerfile for respective tasks:
+1. _(Optional)_ Modify Dockerfile for respective tasks:
 
    * Eye contact task: `EyeContact.Dockerfile`
    
@@ -150,16 +149,16 @@ The following steps should be performed to participate in the challenge:
    
    ```bash
    REPOSITORY                     TAG         IMAGE ID          CREATED          SIZE
-   multimediate_next_speaker      latest      46677483e0f0      1 hours ago      833MB
    multimediate_eye_contact       latest      5689a6cd5444      1 hours ago      833MB
+   multimediate_next_speaker      latest      46677483e0f0      1 hours ago      833MB
    ```
 
 
 ### Online Submission
 
-1. Join the challenge on [EvalAI](TODO CHANGE) if you have not done this already:
+1. Join the challenge on [EvalAI](https://TODO) if you have not done this already:
     * Create an account and a participant team.
-    * Go to the [EvalAI challenge page](TODO CHANGE) and participate with your team.
+    * Go to the [EvalAI challenge page](https://TODO) and participate with your team.
 
 1. Install EvalAI command line interface:
 
@@ -189,4 +188,4 @@ The following steps should be performed to participate in the challenge:
    evalai push multimediate_next_speaker:latest --phase multimediate-next-speaker-501
    ```
 
-1. Check the status of your submission on the [EvalAI challenge page](TODO CHANGE).
+1. Check the status of your submission on the [EvalAI challenge page](https://TODO).
