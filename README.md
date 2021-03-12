@@ -38,25 +38,27 @@ From these files the following are the most important ones:
 * `submission/participant_next_speaker.py` This file is intended for the next speaker prediction code of the participants.
 * `run.py` This file can be used to test the evaluation directly or in a docker container. 
    It supports the following parameters:
+
    * `-t <task>` Select which task should be used (`eye_contact` or `next_speaker`)
    * `-p "<path/to/dataset location>"` Path to the dataset location
    * `-i "<image name>"` Name of the docker image prefix (default: `multimediate`)
    * `-d` If this flag is set, the script will create and run a docker image with the name `<image name>_<task>` (e.g., `multimediate_eye_contact`)
-
-Example usages:
-```bash
-# Run evaluation of eye contact task directly
-python run.py -t eye_contact -p "/path/to/challenge dataset"
-
-# Run evaluation of next speaker task directly
-python run.py -t next_speaker -p "/path/to/challenge dataset"
-
-# Run evaluation of eye contact task in docker container
-python run.py -t eye_contact -p "/path/to/challenge dataset" -d
-
-# Run evaluation of next speaker task in docker container
-python run.py -t next_speaker -p "/path/to/challenge dataset" -d
-```
+   
+   Example usages:
+  
+   ```bash
+   # Run evaluation of eye contact task directly
+   python run.py -t eye_contact -p "/path/to/challenge dataset"
+   
+   # Run evaluation of next speaker task directly
+   python run.py -t next_speaker -p "/path/to/challenge dataset"
+   
+   # Run evaluation of eye contact task in docker container
+   python run.py -t eye_contact -p "/path/to/challenge dataset" -d
+   
+   # Run evaluation of next speaker task in docker container
+   python run.py -t next_speaker -p "/path/to/challenge dataset" -d
+   ```
 
 ### Docker Information (optional)
 The `run.py` script in this repository can be used to create appropriate docker images to participate in the challenge.
