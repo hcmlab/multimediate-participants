@@ -34,16 +34,14 @@ The starter code repository is intended for Python-based approaches and consists
 
 From these files the following are the most important ones:
 
-`submission/participant_eye_contact.py` This file is intended for the eye contact prediction code of the participants.
-
-`submission/participant_next_speaker.py` This file is intended for the next speaker prediction code of the participants.
-
-`run.py` This file can be used to test the evaluation directly or in a docker container. 
-It supports the following parameters:
-* `-t <task>` Select which task should be used (`eye_contact` or `next_speaker`)
-* `-p "<path/to/dataset location>"` Path to the dataset location
-* `-i "<image name>"` Name of the docker image prefix (default: `multimediate`)
-* `-d` If this flag is set, the script will create and run a docker image with the name `<image name>_<task>` (e.g., `multimediate_eye_contact`)
+* `submission/participant_eye_contact.py` This file is intended for the eye contact prediction code of the participants.
+* `submission/participant_next_speaker.py` This file is intended for the next speaker prediction code of the participants.
+* `run.py` This file can be used to test the evaluation directly or in a docker container. 
+   It supports the following parameters:
+   * `-t <task>` Select which task should be used (`eye_contact` or `next_speaker`)
+   * `-p "<path/to/dataset location>"` Path to the dataset location
+   * `-i "<image name>"` Name of the docker image prefix (default: `multimediate`)
+   * `-d` If this flag is set, the script will create and run a docker image with the name `<image name>_<task>` (e.g., `multimediate_eye_contact`)
 
 Example usages:
 ```bash
@@ -85,19 +83,16 @@ The following steps should be performed to participate in the challenge:
 1. Implement prediction code for the respective tasks in the following files:
    
    * Eye contact task: `submission/participant_eye_contact.py`
-   
    * Next speaker task: `submission/participant_next_speaker.py`
 
 1. _(Optional)_ Add required Python packages for the respective tasks to the following files:
 
    * Eye contact task: `requirements-eye-contact.txt`
-   
    * Next speaker task: `requirements-next-speaker.txt`
 
 1. _(Optional)_ Modify Dockerfile for respective tasks:
 
    * Eye contact task: `EyeContact.Dockerfile`
-   
    * Next speaker task: `NextSpeaker.Dockerfile`
 
 ### Test Prediction Code
