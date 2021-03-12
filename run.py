@@ -40,7 +40,7 @@ def run_docker(task_name, image_name, data_path, sample_file):
     container_log = client.containers.run(docker_image_name, volumes=volumes, environment=env, remove=True, stdin_open=True, tty=True, network_disabled=True)
 
     # Print docker container output
-    print(container_log.decode('utf-8'))
+    print(container_log.decode('utf-8').replace('\r\n', ' '))
 
 
 if __name__ == '__main__':
