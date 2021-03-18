@@ -21,9 +21,9 @@ def predict(dataset_path, sample_file):
         for index, row in df_samples.iterrows():
             recording_path = os.path.join(dataset_path, 'data', row['recording'])
 
-            video_generators, audio_generators = data_loader.get_data_generators(recording_path, row['start_time'], row['end_time'])
+            video_generators, audio_generator = data_loader.get_data_generators(recording_path, row['start_time'], row['end_time'])
 
-            predictions.append([index] + participant_eye_contact.predict(video_generators, audio_generators, row['subject']))
+            predictions.append([index] + participant_eye_contact.predict(video_generators, audio_generator, row['subject']))
 
         # Write predictions
         df_out = pd.DataFrame(predictions, columns=['index', 'prediction'])

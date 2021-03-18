@@ -1,13 +1,20 @@
 import os
-from datetime import datetime
 
 import cv2
 import numpy as np
 from pydub import AudioSegment
 
+LAST_AUDIO_PATH = None
+LAST_AUDIO_SEGMENT = None
 
-def get_audio_generator(recording_path, subject, start_time, end_time):
-    audio_file = os.path.join(recording_path, "{}.audio.wav".format(subject))
+LAST_VIDEO_PATH = [None for x in range(4)]
+LAST_VIDEO_CAPTURE = [None for y in range(4)]
+
+
+def get_audio_generator(recording_path, start_time, end_time):
+    global LAST_AUDIO_PATH, LAST_AUDIO_SEGMENT
+
+    audio_file = os.path.join(recording_path, "audio.wav")
 
     fps = 30
     sr = 44100
@@ -17,7 +24,14 @@ def get_audio_generator(recording_path, subject, start_time, end_time):
     t1 = int(start_time * 1000)
     t2 = int((end_time + additional_time) * 1000)
 
-    new_audio = AudioSegment.from_wav(audio_file)
+    # Cache audio for other samples from same file
+    if LAST_AUDIO_PATH == audio_file:
+        new_audio = LAST_AUDIO_SEGMENT
+    else:
+        new_audio = AudioSegment.from_wav(audio_file)
+        LAST_AUDIO_SEGMENT = new_audio
+        LAST_AUDIO_PATH = audio_file
+
     new_audio = new_audio[t1:t2]
 
     snippet = np.array(new_audio.get_array_of_samples())
@@ -28,10 +42,18 @@ def get_audio_generator(recording_path, subject, start_time, end_time):
     # return np.array(new_audio.get_array_of_samples())
 
 
-def get_video_generator(recording_path, subject, start_time, end_time):
+def get_video_generator(generator_id, recording_path, subject, start_time, end_time):
+    global LAST_VIDEO_PATH, LAST_VIDEO_CAPTURE
+
     video_file = os.path.join(recording_path, "{}.video.avi".format(subject))
 
-    capture = cv2.VideoCapture(video_file)
+    # Cache video for other samples from same file
+    if LAST_VIDEO_PATH[generator_id] == video_file:
+        capture = LAST_VIDEO_CAPTURE[generator_id]
+    else:
+        capture = cv2.VideoCapture(video_file)
+        LAST_VIDEO_PATH[generator_id] = video_file
+        LAST_VIDEO_CAPTURE[generator_id] = capture
 
     frame_width = int(capture.get(cv2.CAP_PROP_FRAME_WIDTH))
     frame_height = int(capture.get(cv2.CAP_PROP_FRAME_HEIGHT))
@@ -61,10 +83,9 @@ def get_video_generator(recording_path, subject, start_time, end_time):
 
 def get_data_generators(recording_path, start_time, end_time):
     video_generators = []
-    audio_generators = []
+    audio_generator = get_audio_generator(recording_path, start_time, end_time)
 
-    for i in range(1, 5):
-        video_generators.append(get_video_generator(recording_path, "subjectPos{}".format(i), start_time, end_time))
-        audio_generators.append(get_audio_generator(recording_path, "subjectPos{}".format(i), start_time, end_time))
+    for i in range(4):
+        video_generators.append(get_video_generator(i, recording_path, "subjectPos{}".format(i + 1), start_time, end_time))
 
-    return video_generators, audio_generators
+    return video_generators, audio_generator
