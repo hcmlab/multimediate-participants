@@ -39,8 +39,6 @@ def get_audio_generator(recording_path, start_time, end_time):
     for i in range(len(snippet)):
         yield snippet[i]
 
-    # return np.array(new_audio.get_array_of_samples())
-
 
 def get_video_generator(generator_id, recording_path, subject, start_time, end_time):
     global LAST_VIDEO_PATH, LAST_VIDEO_CAPTURE
@@ -78,10 +76,16 @@ def get_video_generator(generator_id, recording_path, subject, start_time, end_t
         yield buf[fc]
         fc += 1
 
-    # return buf
-
 
 def get_data_generators(recording_path, start_time, end_time):
+    """
+    Provides python generators to access video frames and audio data of sample segment.
+
+    :param recording_path: Path to the folder in which the recording data (video and audio files) are located
+    :param start_time: Start time of the sample in seconds
+    :param end_time: End time of the sample in seconds
+    :return: List of 4 generators for video frames from each camera and a generator for audio samples from microphone
+    """
     video_generators = []
     audio_generator = get_audio_generator(recording_path, start_time, end_time)
 
