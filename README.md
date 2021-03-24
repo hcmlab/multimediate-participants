@@ -25,6 +25,7 @@ The starter code repository is intended for Python-based approaches and consists
 │   ├── main_next_speaker.py                   # Main file executed in the docker image for the next speaker task
 │   ├── participant_eye_contact.py             # Add your prediction code for eye contact task here
 │   └── participant_next_speaker.py            # Add your prediction code for next speaker task here
+├── extract_example.py                         # Example file which shows how to extract samples for training
 ├── EyeContact.Dockerfile                      # Dockerfile definition for eye contact task
 ├── NextSpeaker.Dockerfile                     # Dockerfile definition for next speaker task 
 ├── requirements-eye-contact.txt               # Add required python packages for eye contact task here (used in docker image)
@@ -80,7 +81,9 @@ The following steps should be performed to participate in the challenge:
    git clone https://github.com/hcmlab/multimediate-participants.git
    ```
 
-1. Download dataset from [here](https://TODO).
+1. Download dataset from [here](https://multimediate-challenge.org/Dataset/).
+
+   > **INFO**: Data for next speaker task will be available soon.
 
 1. Implement prediction code for the respective tasks in the following files:
    
@@ -154,7 +157,9 @@ The following steps should be performed to participate in the challenge:
 
 ### Online Submission
 
-1. Join the challenge on [EvalAI](https://TODO) if you have not done this already:
+> **INFO**: Links to the eval.ai challenge page will be available soon.
+
+1. Join the challenge on [EvalAI](https://eval.ai) if you have not done this already:
     * Create an account and a participant team.
     * Go to the [EvalAI challenge page](https://TODO) and participate with your team.
 
