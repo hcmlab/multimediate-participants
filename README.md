@@ -25,9 +25,9 @@ The starter code repository is intended for Python-based approaches and consists
 │   ├── main_next_speaker.py                   # Main file executed in the docker image for the next speaker task
 │   ├── participant_eye_contact.py             # Add your prediction code for eye contact task here
 │   └── participant_next_speaker.py            # Add your prediction code for next speaker task here
-├── extract_example.py                         # Example file which shows how to extract samples for training
 ├── EyeContact.Dockerfile                      # Dockerfile definition for eye contact task
-├── NextSpeaker.Dockerfile                     # Dockerfile definition for next speaker task 
+├── NextSpeaker.Dockerfile                     # Dockerfile definition for next speaker task
+├── extract_example.py                         # Example file which shows how to extract samples for training
 ├── requirements-eye-contact.txt               # Add required python packages for eye contact task here (used in docker image)
 ├── requirements-next-speaker.txt              # Add required python packages for next speaker task here (used in docker image)
 ├── run.py                                     # Helper script to run evaluation locally or in docker container
