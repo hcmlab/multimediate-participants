@@ -35,6 +35,7 @@ The starter code repository is intended for Python-based approaches and consists
 
 From these files the following are the most important ones:
 
+* `extract_example.py` This file shows how samples can be extracted from the dataset recordings for training purposes.
 * `submission/participant_eye_contact.py` This file is intended for the eye contact prediction code of the participants.
 * `submission/participant_next_speaker.py` This file is intended for the next speaker prediction code of the participants.
 * `run.py` This file can be used to test the evaluation directly or in a docker container. 
