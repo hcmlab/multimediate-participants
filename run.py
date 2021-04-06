@@ -2,7 +2,6 @@ import argparse
 import os
 import sys
 
-import docker
 import pandas as pd
 from sklearn.metrics import recall_score, accuracy_score
 
@@ -12,6 +11,8 @@ EYE_CONTACT = 'eye_contact'
 
 
 def run_docker(task_name, image_name, data_path, sample_file):
+    import docker
+    
     # Get absolute path
     data_path = os.path.abspath(data_path)
 
@@ -50,7 +51,7 @@ if __name__ == '__main__':
     parser.add_argument('-p', '--path', required=True, type=str, help='path to input data')
     parser.add_argument('-d', '--docker', action='store_true', help='run code in docker container')
     parser.add_argument('-i', '--image', type=str, default='multimediate', help='docker image name')
-    parser.add_argument('-s', '--samples', type=str, default='val', help='')
+    parser.add_argument('-s', '--samples', type=str, choices=['train', 'val', 'test'], default='val', help='sample list file')
 
     args = parser.parse_args()
 
