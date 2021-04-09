@@ -68,7 +68,7 @@ However, participants can also create their own docker images as long as they co
 
 * The root directory of the dataset will be mapped to `/input/` in the docker image (i.e., the `data` folder will be available at `/input/data/`).
 * The name of the sample list file will be stored in the environment variable `MULTIMEDIATE_SAMPLE_FILE` (e.g., `test_eye_contact.csv`). The file will have the same structure as the provided sample lists (see folder `sample_lists` in the dataset).
-* Based on the sample list file and the provided dataset location, the docker image should produce prediction files with the same structure as the examples in the `output` folder and write them to the folder `/code/output/` within the docker image.
+* Based on the sample list file and the provided dataset location, the docker image should produce prediction files with the same structure as the examples in the `output` folder and write them to the folder `/code/output/` within the docker image (named `prediction_eye_contact.csv` or `prediction_next_speaker.csv`).
 
 ## Participation Guide
 
