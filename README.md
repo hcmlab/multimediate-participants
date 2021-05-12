@@ -62,13 +62,22 @@ From these files the following are the most important ones:
    python run.py -t next_speaker -p "/path/to/challenge dataset" -d
    ```
 
-### Docker Information (optional)
+### Docker Information (alternative to `run.py`)
 The `run.py` script in this repository can be used to create appropriate docker images to participate in the challenge.
-However, participants can also create their own docker images as long as they comply with the following evaluation conditions:
+However, it is only provided to simplify the submission process but participants can also create their own docker images as long as they comply with the following evaluation conditions:
 
 * The root directory of the dataset will be mapped to `/input/` in the docker image (i.e., the `data` folder will be available at `/input/data/`).
 * The name of the sample list file will be stored in the environment variable `MULTIMEDIATE_SAMPLE_FILE` (e.g., `test_eye_contact.csv`). The file will have the same structure as the provided sample lists (see folder `sample_lists` in the dataset).
 * Based on the sample list file and the provided dataset location, the docker image should produce prediction files with the same structure as the examples in the `output` folder and write them to the folder `/code/output/` within the docker image (named `prediction_eye_contact.csv` or `prediction_next_speaker.csv`).
+
+The following commands can be used to build and run custom docker images:
+```bash
+# Build docker image
+docker build -f EyeContact.Dockerfile -t multimediate_eye_contact .
+
+# Run docker container
+docker run -it --rm -e MULTIMEDIATE_SAMPLE_FILE=val_eye_contact.csv -v path/to/dataset:/input -v output/path/for/result:/code/output multimediate_eye_contact
+```
 
 ## Participation Guide
 
