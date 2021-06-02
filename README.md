@@ -167,11 +167,9 @@ The following steps should be performed to participate in the challenge:
 
 ### Online Submission
 
-> **INFO**: Links to the eval.ai challenge page will be available soon.
-
 1. Join the challenge on [EvalAI](https://eval.ai) if you have not done this already:
     * Create an account and a participant team.
-    * Go to the [EvalAI challenge page](https://TODO) and participate with your team.
+    * Go to the [EvalAI challenge page](https://eval.ai/web/challenges/challenge-page/1062/overview) and participate with your team.
 
 1. Install EvalAI command line interface:
 
@@ -195,10 +193,10 @@ The following steps should be performed to participate in the challenge:
    
    ```bash
    # Eye contact
-   evalai push multimediate_eye_contact:latest --phase multimediate-eye-contact-501
+   evalai push multimediate_eye_contact:latest --phase multimediate-eye-contact-1062
    
    # Next speaker
-   evalai push multimediate_next_speaker:latest --phase multimediate-next-speaker-501
+   evalai push multimediate_next_speaker:latest --phase multimediate-next-speaker-1062
    ```
 
-1. Check the status of your submission on the [EvalAI challenge page](https://TODO).
+1. Check the status of your submission on the [EvalAI challenge page](https://eval.ai/web/challenges/challenge-page/1062/my-submission).
