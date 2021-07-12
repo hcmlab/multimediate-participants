@@ -93,8 +93,6 @@ The following steps should be performed to participate in the challenge:
 
 1. Download dataset from [here](https://multimediate-challenge.org/Dataset/).
 
-   > **INFO**: Data for next speaker task will be available soon.
-
 1. Implement prediction code for the respective tasks in the following files:
    
    * Eye contact task: `submission/participant_eye_contact.py`
